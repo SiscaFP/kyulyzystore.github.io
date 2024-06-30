@@ -162,7 +162,7 @@ function hitungp() {
   function hitungDanTampilkan() {
     var inputNominal = document.getElementById("inputNominal").value;
     var nominal = parseFloat(inputNominal);
-    var tambahan20Persen = nominal * 0.2;
+    var tambahan20Persen = nominal * 0.30;
     var uangHarusDikembalikan = nominal + tambahan20Persen;
     document.getElementById("hasilPerhitungan").innerText = uangHarusDikembalikan;
   }
@@ -170,7 +170,7 @@ function hitungp() {
   function hitungDanTampilkann() {
     var inputNominal = document.getElementById("inputNominall").value;
     var nominal = parseFloat(inputNominal);
-    var tambahan35Persen = nominal * 0.35;
+    var tambahan35Persen = nominal * 0.45;
     var uangHarusDikembalikan = nominal + tambahan35Persen;
     document.getElementById("hasilPerhitungann").innerText = uangHarusDikembalikan;
   }
@@ -178,7 +178,7 @@ function hitungp() {
   function hitungDanTampilkannn() {
     var inputNominal = document.getElementById("inputNominalll").value;
     var nominal = parseFloat(inputNominal);
-    var tambahan40Persen = nominal * 0.40;
+    var tambahan40Persen = nominal * 0.60;
     var uangHarusDikembalikan = nominal + tambahan40Persen;
     document.getElementById("hasilPerhitungannn").innerText = uangHarusDikembalikan;
   }
@@ -186,7 +186,7 @@ function hitungp() {
   function hitungDanTampilkannnn() {
     var inputNominal = document.getElementById("inputNominallll").value;
     var nominal = parseFloat(inputNominal);
-    var tambahan55Persen = nominal * 0.55;
+    var tambahan55Persen = nominal * 0.75;
     var uangHarusDikembalikan = nominal + tambahan55Persen;
     document.getElementById("hasilPerhitungannnn").innerText = uangHarusDikembalikan;
   }
