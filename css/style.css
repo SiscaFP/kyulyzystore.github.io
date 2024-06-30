@@ -248,6 +248,19 @@ img {vertical-align: middle;}
     color: var(--second-bg-color);
 }
 
+.bank p {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    background: #ffffff9d;
+    color: #ffa600;
+}
+
+.bank img {
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
  /* BREAKSPOINT */
  @media (max-width: 1200px) {
     html {
