@@ -137,7 +137,7 @@ function hi() {
     document.getElementById("warning").innerHTML = "Jumlah views harus minimal 1850!";
     return;
   }
-  let hargaModal = 10;
+  let hargaModal = 15.5;
   let laba = hargaModal * 0.2;
   let totalHarga = likes * hargaModal + laba;
   document.getElementById("hasil-fol").innerHTML = "Jumlah Total Harga: Rp. " + totalHarga.toLocaleString();
