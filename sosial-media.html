@@ -454,6 +454,8 @@
                 <div class="dropdown-submenu">
                     <a href="#" class="dropdown-item dropdown-toggle">Jasa Facebook</a>
                     <div class="submenu">
+                        <a href="#fff" class="dropdown-item">Followers</a>
+                        <a href="#fgf" class="dropdown-item">Group Member </a>
                         <a href="#pgl" class="dropdown-item">Page Likes</a>
                         <a href="#psl" class="dropdown-item">Post Likes</a>
                         <a href="#rlv" class="dropdown-item">Reels Views</a>
@@ -780,6 +782,64 @@
               <img src="pic/fb.png" style="width: 50%" />
             </td>
           </tr>
+
+          <tr>
+            <th id="fff">Followers</th>
+            <th>Minimal beli</th>
+            <th>Aksi</th>
+          </tr>
+
+        </thead>
+        <tr>
+          <td>
+            <input type="number" id="ffollowersf" placeholder="Masukkan jumlah" class="form-control" />
+          </td>
+          <td>100 Followers = Rp 4,000</td>
+          <td>
+            <button class="btn btn-primary" onclick="calculate('ffollowersf', 4000, 100)">
+              Hitung
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total Biaya:</td>
+          <td><span id="result-ffollowersf">0</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">
+            <button class="btn btn-success" onclick="buy('ffollowersf', 'Facebook Followers', 4000, 100);">Beli</button>
+          </td>
+        </tr>
+
+        <tr>
+          <th id="fgf">Group Members</th>
+          <th>Minimal beli</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>
+          <input type="number" id="fgroupf" placeholder="Masukkan jumlah" class="form-control" />
+        </td>
+        <td>100 Followers = Rp 4,500</td>
+        <td>
+          <button class="btn btn-primary" onclick="calculate('fgroupf', 4500, 100)">
+            Hitung
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-right">Total Biaya:</td>
+        <td><span id="result-fgroupf">0</span></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="text-center">
+          <button class="btn btn-success" onclick="buy('fgroupf', 'Facebook Group Member', 4500, 100);">Beli</button>
+        </td>
+      </tr>
+    </tbody>
+
+      </tbody>
           <tr>
             <th id="pgl">Page Likes</th>
             <th>Minimal beli</th>
