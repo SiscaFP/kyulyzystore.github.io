@@ -1,0 +1,2370 @@
+  <!DOCTYPE html>
+  <html lang="id">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      />
+      <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+      <title>Kyulyzy Store - Layanan Sosial Media</title>
+      <style>
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+          text-align: center;
+          background: linear-gradient(to right, #f3f4f6, #e0eafc);
+          margin: 0;
+          padding: 0;
+          color: #333;
+
+        }
+
+        .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #4a4a4a;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        color: black;
+        font-weight: 600;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #4a4a4a;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #4a4a4a;
+        margin-left: 1rem;
+        transition: color 0.3s;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: #000;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%284, 4, 4, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+
+      /* Smoth Transition for Navbar Background */
+      .navbar.scrolled {
+        background-color: #ffffff !important; /* Change the background when scrolled */
+      }
+
+        .desc {
+          background-color: white;
+          border-radius: 10px;
+          padding: 30px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          max-width: 600px;
+          margin: 100px auto 20px;
+        }
+
+        .service-card {
+          background: white;
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+          transform: scale(1.05);
+        }
+
+        .table {
+          margin: 20px auto;
+          width: 100%;
+          max-width: 600px;
+        }
+
+        .table th,
+        .table td {
+          vertical-align: middle; /* Menyelaraskan konten di tengah sel tabel */
+        }
+
+        .btn-primary,
+        .btn-success {
+          transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover,
+        .btn-success:hover {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 10px;
+          margin: 20px auto;
+          max-width: 600px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section h2 {
+          margin-bottom: 15px;
+          color: #4caf50;
+        }
+
+        .contact-section p {
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+
+        .container-dropdown {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* Dropdown menu dengan efek transisi */
+    .dropdown-menu {
+      max-height: 300px;
+      overflow-y: auto;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: none;
+      max-width: 300px; /* Batasan agar tidak terlalu lebar */
+      white-space: nowrap; /* Hindari teks turun ke baris baru */
+    }
+
+    .dropdown-menu.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Submenu */
+    .submenu {
+      display: none;
+      transition: max-height 0.3s ease-out;
+      overflow: hidden;
+    }
+
+    .submenu.show {
+      display: block;
+    }
+
+    /* Efek hover */
+    .dropdown-item:hover {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+    }
+
+    /* Batasan panjang teks */
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      max-width: 280px; /* Menyesuaikan agar tidak terlalu panjang */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Ikon panah kecil */
+    .dropdown-submenu > .dropdown-toggle::after {
+      content: " ▼";
+      font-size: 10px; /* Ukuran lebih kecil */
+      transition: transform 0.3s;
+    }
+
+    /* Rotasi ikon panah saat submenu terbuka */
+    .dropdown-submenu.open > .dropdown-toggle::after {
+      transform: rotate(180deg);
+    }
+
+/* Custom Alert */
+#customAlert {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: #ff4d4d;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+#customAlert p {
+    margin: 0;
+    font-size: 16px;
+}
+
+#customAlert button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    background: white;
+    color: #ff4d4d;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#customAlert button:hover {
+    background: #ffcccc;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+#customAlert {
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+}
+
+        .modal {
+              display: none; /* Hidden by default */
+              position: fixed; /* Stay in place */
+              z-index: 1000; /* Sit on top */
+              left: 0;
+              top: 0;
+              width: 100%; /* Full width */
+              height: 100%; /* Full height */
+              overflow: auto; /* Enable scroll if needed */
+              background-color: rgba(0, 0, 0, 0.8); /* Dark background with opacity */
+          }
+
+          .modal-content {
+              background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Gradient background */
+              margin: 10% auto; /* Center the modal */
+              padding: 20px;
+              border-radius: 15px;
+              width: 300px; /* Adjust width */
+              box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+              text-align: center;
+              color: #f0f0f0;
+              transition: transform 0.3s ease-in-out;
+              transform: translateY(-100px);
+              opacity: 0;
+              animation: slideIn 0.5s forwards; /* Animation on open */
+          }
+
+          @keyframes slideIn {
+              from {
+                  transform: translateY(-100px);
+                  opacity: 0;
+              }
+              to {
+                  transform: translateY(0);
+                  opacity: 1;
+              }
+          }
+
+          .modal-header {
+              display: flex;
+              justify-content: space-between;
+              border-bottom: none; /* No border */
+          }
+          
+          .close {
+              color: #FFF;
+              font-size: 28px;
+              font-weight: bold;
+              cursor: pointer;
+          }
+
+          .close:hover {
+              color: #FFDD57; /* Color change on hover */
+          }
+
+          .btn-success, .btn-danger {
+              margin: 5px;
+              transition: background 0.3s ease;
+          }
+
+          .btn-success:hover {
+              background-color: #45a049; /* Darker green on hover */
+          }
+
+          .btn-danger:hover {
+              background-color: #dc3545; /* Darker red on hover */
+          }
+
+          .back-home {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.back-home:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+
+        .footer {
+          background: #333;
+          color: white;
+          padding: 15px 0;
+          bottom: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px; /* Jarak antara teks dan ikon */
+        }
+
+        .footer p {
+          margin: 0;
+        }
+      </style>
+    </head>
+    <body>
+      <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+            <div class="logo">Kyulyzy Store</div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbar"
+              aria-controls="navbar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+              <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="index.html">Home</a>
+                <a class="nav-item nav-link" href="pinpri.html">Pinpri</a>
+                <a class="nav-item nav-link" href="sosial-media.html"
+                  >Sosial Media</a
+                >
+                <a class="nav-item nav-link" href="maintance.html">Testimoni</a>
+                <a class="nav-item nav-link" href="maintance.html">Top Up</a>
+                <a class="nav-item nav-link" href="maintance.html">Undangan</a>
+                <a class="nav-item nav-link" href="unlock.html">Unlock</a>
+                <a class="nav-item nav-link" href="maintance.html">Website</a>
+                <a class="nav-item nav-link" href="https://wa.me/6288970905281"
+                  >Admin</a
+                >
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <div class="desc" data-aos="fade-up">
+          <h2>JASA SOCIAL MEDIA</h2>
+          <p>Naikkan engagement akun sosial mediamu dengan layanan kami!</p>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4" data-aos="fade-up">
+              <div class="service-card">
+                <h3>📈 Followers</h3>
+                <p>Tingkatkan popularitas dengan followers aktif!</p>
+              </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-card">
+                <h3>❤️ Likes</h3>
+                <p>Tambah kepercayaan audiens dengan lebih banyak likes.</p>
+              </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+              <div class="service-card">
+                <h3>👀 Views</h3>
+                <p>Buat kontenmu viral dengan views yang meningkat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="container-dropdown">
+        <div class="dropdown">
+            <button id="dropdownJasa" class="btn btn-primary dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                Pilih Jasa Media Sosial
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownJasa">
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Buzzer</a>
+                    <div class="submenu">
+                        <a href="#igc" class="dropdown-item">Instagram Comment Custom</a>
+                        <a href="#ttcc" class="dropdown-item">TikTok Comment Custom</a>
+                        <a href="#ycc" class="dropdown-item">YouTube Comment Custom</a>
+                        <a href="#fcc" class="dropdown-item">Facebook Comment Custom</a>
+                        <a href="#tcc" class="dropdown-item">Twitter Comment Custom</a>
+                        <a href="#fcas" class="dropdown-item">Fake Chat All Sosmed</a>
+                        <a href="#wfc" class="dropdown-item">WhatsApp Fake Chat</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Facebook</a>
+                    <div class="submenu">
+                        <a href="#pgl" class="dropdown-item">Page Likes</a>
+                        <a href="#psl" class="dropdown-item">Post Likes</a>
+                        <a href="#rlv" class="dropdown-item">Reels Views</a>
+                        <a href="#vvs" class="dropdown-item">Video Views</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Instagram</a>
+                    <div class="submenu">
+                        <a href="#resripv" class="dropdown-item">(Random) Engagement + Shares + Reach + Impressions + Profile Visit</a>
+                        <a href="#rfld" class="dropdown-item">(Random) Followers Low Drop 5-20%</a>
+                        <a href="#lig" class="dropdown-item">Likes</a>
+                        <a href="#icc" class="dropdown-item">(Indonesia) Comment Custom</a>
+                        <a href="#ifoll" class="dropdown-item">(Indonesia) Followers</a>
+                        <a href="#ill" class="dropdown-item">(Indonesia) Likes</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Lazada</a>
+                    <div class="submenu">
+                        <a href="#lazfol" class="dropdown-item">Followers</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Shopee</a>
+                    <div class="submenu">
+                        <a href="#follsop" class="dropdown-item">Followers</a>
+                        <a href="#cclivesop" class="dropdown-item">Custom Comment (Live)</a>
+                        <a href="#focul" class="dropdown-item">Fake Order Check Out (Live)</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Telegram</a>
+                    <div class="submenu">
+                        <a href="#vpctel" class="dropdown-item">Views Post Channel</a>
+                        <a href="#rpcmix" class="dropdown-item">Reactions Post Channel (Mixed)</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Threads</a>
+                    <div class="submenu">
+                        <a href="#rthfol" class="dropdown-item">(Random) Followers</a>
+                        <a href="#rlike" class="dropdown-item">(Random) Like</a>
+                        <a href="#ifollsth" class="dropdown-item">(Indonesia) Followers</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa TikTok</a>
+                    <div class="submenu">
+                        <a href="#rvattk" class="dropdown-item">(Random) Views Asia</a>
+                        <a href="#rlttk" class="dropdown-item">(Random) Like</a>
+                        <a href="#rvttk" class="dropdown-item">(Random) Views</a>
+                        <a href="#rfttk" class="dropdown-item">(Random) Followers</a>
+                        <a href="#idcuscom" class="dropdown-item">(Indonesia) Custom Comment</a>
+                        <a href="#idfolls" class="dropdown-item">(Indonesia) Followers</a>
+                        <a href="#idlikes" class="dropdown-item">(Indonesia) Likes</a>
+                        <a href="#idviews" class="dropdown-item">(Indonesia) Views</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Twitter (X)</a>
+                    <div class="submenu">
+                        <a href="#twtrfolls" class="dropdown-item">(Random) Followers</a>
+                        <a href="#twtimpress" class="dropdown-item">(Random) Impressions</a>
+                        <a href="#rlikestwt" class="dropdown-item">(Random) Likes</a>
+                        <a href="#rrettwt" class="dropdown-item">(Random) Retweets</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa WhatsApp Channels</a>
+                    <div class="submenu">
+                        <a href="#rrwach" class="dropdown-item">(Random) Reactions</a>
+                        <a href="#glmmwach" class="dropdown-item">(Global) Member</a>
+                        <a href="#idmmwach" class="dropdown-item">(Indonesia) Member</a>
+                    </div>
+                </div>
+
+                <div class="dropdown-submenu">
+                    <a href="#" class="dropdown-item dropdown-toggle">Jasa Youtube</a>
+                    <div class="submenu">
+                        <a href="#glsubsyt" class="dropdown-item">(Global) Subscriber</a>
+                        <a href="#glviewsyt" class="dropdown-item">(Global) Views + 2% Likes</a>
+                        <a href="#wtchmyt" class="dropdown-item">Watchtimes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Buzzer -->
+      <div class="container">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <td colspan="3" class="text-center">
+                <p>Buzzer</p>
+                <img src="pic/buzzer.png" style="width: 50%" />
+              </td>
+            </tr>
+            <tr>
+              <th colspan="3" class="text-left">Comment</th>
+            </tr>
+            <tr>
+              <th id="igc">Instagram Custom Comment</th>
+              <th>Minimal beli</th>
+              <th>Aksi</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <td>
+                    <input type="number" id="igcc" placeholder="Masukkan jumlah" class="form-control" />
+                </td>
+                <td>15 Buzz = Rp 22,500</td>
+                <td>
+                    <button class="btn btn-primary" onclick="calculate('igcc', 22500, 15)">Hitung</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-right">Total Biaya:</td>
+                <td><span id="result-igcc">0</span></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <button class="btn btn-success" onclick="buy('igcc', 'Instagram Custom Comment', 22500, 15)">Beli</button>
+                </td>
+            </tr>
+        </tbody>
+          
+
+            <tr>
+              <th id="ttcc">TikTok Custom Comment</th>
+              <th>Minimal Beli</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="number" id="ttc" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>10 Buzz = Rp 16,000</td>
+              <td>
+                <button class="btn btn-primary" onclick="calculate('ttc', 16000, 10)">
+                  Hitung
+                </button>                  
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-ttc">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button class="btn btn-success" onclick="buy('ttc', 'TikTok Custom Comment', 16000, 10)">
+                  Beli
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+            <tr>
+              <th id="ytbuzz">Youtube Custom Comment</th>
+              <th>Minimal Beli</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                  <input type="number" id="ytbuz" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>10 Buzz = Rp 40,000</td>
+              <td>
+                <button class="btn btn-primary" onclick="calculate('ytbuz', 40000, 10)">
+                  Hitung
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-ytbuz">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button class="btn btn-success" onclick="buy('ytbuz', 'Youtube Custom Comment', 40000, 10);">Beli</button>
+              </td>
+            </tr>
+          </tbody>
+            <tr>
+              <th id="fcc">Facebook Comment Custom</th>
+              <th>Minimal Beli</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="number" id="ffcc" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>10 Buzz = Rp 25,000</td>
+              <td>
+                <button class="btn btn-primary" onclick="calculate('ffcc', 25000, 10)">
+                  Hitung
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-ffcc">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button class="btn btn-success" onclick="buy('ffcc', 'Facebook Comment Custom', 25000, 10);">Beli</button>
+              </td>
+            </tr>
+          </tbody>
+
+            <tr>
+              <th id="tcc">Twitter Comment Custom</th>
+              <th>Minimal Beli</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                  <input type="number" id="twtcc" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>10 Buzz = Rp 30,000</td>
+              <td>
+                <button class="btn btn-primary" onclick="calculate('twtcc', 30000, 10)">
+                  Hitung
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-twtcc">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button class="btn btn-success" onclick="buy('twtcc', 'Twitter Custom Comment', 30000, 10);">Beli</button>
+              </td>
+            </tr>
+          </tbody>
+            <tr>
+              <th colspan="3" class="text-left">Spam Chat</th>
+            </tr>
+            <tr>
+              <th id="fcas">Fake Chat All Sosmed</th>
+              <th>Minimal Beli</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="number" id="fkcass" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>5 Buzz = Rp 8,500</td>
+              <td>
+                <button class="btn btn-primary" onclick="calculate('fkcass', 8500, 5)">
+                  Hitung
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-fkcass">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button class="btn btn-success" onclick="buy('fkcass', 'Fake Chat All Sosmed', 8500, 5);">Beli</button>
+              </td>
+            </tr>
+          </tbody>
+            <tr>
+              <th id="wfc">WhatsApp Fake Chat</th>
+              <th>Minimal Beli</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="number" id="wafc" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>5 Buzz = Rp 7,500</td>
+              <td>
+                <button class="btn btn-primary" onclick="calculate('wafc', 7500, 5)">
+                  Hitung
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-wafc">0</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text-center">
+                <button class="btn btn-success" onclick="buy('wafc', 'Instagram Custom Comment', 7500, 5);">Beli</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Facebook -->
+      <div class="container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td colspan="3" class="text-center">
+              <p>Facebook</p>
+              <img src="pic/fb.png" style="width: 50%" />
+            </td>
+          </tr>
+          <tr>
+            <th id="pgl">Page Likes</th>
+            <th>Minimal beli</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="number"
+                id="pglikesfb"
+                placeholder="Masukkan jumlah"
+                style="width: 100%; min-width: 160px"
+                class="form-control"
+              />
+            </td>
+            <td>100 Likes = Rp 7,500</td>
+            <td>
+              <button class="btn btn-primary" onclick="calculate('pglikesfb', 7500, 100)">
+                Hitung
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-right">Total Biaya:</td>
+            <td><span id="result-pglikesfb">0</span></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <button class="btn btn-success" onclick="buy('pglikesfb', 'Page Likes Facebook', 7500, 100);">Beli</button>
+            </td>
+          </tr>
+        </tbody>
+          <tr>
+            <th id="psl">Post Likes</th>
+            <th>Minimal beli</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="number"
+                id="pslikesfb"
+                placeholder="Masukkan jumlah"
+                style="width: 100%; min-width: 160px"
+                class="form-control"
+              />
+            </td>
+            <td>100 Likes = Rp 6,000</td>
+            <td>
+              <button class="btn btn-primary" onclick="calculate('pslikesfb', 6000, 100)">
+                Hitung
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-right">Total Biaya:</td>
+            <td><span id="result-pslikesfb">0</span></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <button class="btn btn-success" onclick="buy('pslikesfb', 'Post Likes Facebook', 6000, 100);">Beli</button>
+            </td>
+          </tr>
+        </tbody>
+        
+          <tr>
+            <th id="rlv">Reels Views</th>
+            <th>Minimal beli</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="number"
+                id="rlviewsfb"
+                placeholder="Masukkan jumlah"
+                style="width: 100%; min-width: 160px"
+                class="form-control"
+              />
+            </td>
+            <td>100 Views = Rp 2,000</td>
+            <td>
+              <button class="btn btn-primary" onclick="calculate('rlviewsfb', 2000, 100)">
+                Hitung
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-right">Total Biaya:</td>
+            <td><span id="result-rlviewsfb">0</span></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <button class="btn btn-success" onclick="buy('rlviewsfb', 'Reels Views Facebook', 2000, 100);">Beli</button>
+            </td>
+          </tr>
+        </tbody>
+        
+          <tr>
+            <th id="vvs">Video Views</th>
+            <th>Minimal beli</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="number"
+                id="vvsfb"
+                placeholder="Masukkan jumlah"
+                style="width: 100%; min-width: 160px"
+                class="form-control"
+              />
+            </td>
+            <td>100 Views = Rp 2,500</td>
+            <td>
+              <button class="btn btn-primary" onclick="calculate('vvsfb', 2500, 100)">
+                Hitung
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-right">Total Biaya:</td>
+            <td><span id="result-vvsfb">0</span></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <button class="btn btn-success" onclick="buy('vvsfb', 'Video Views Facebook', 2500, 100);">Beli</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+        
+    <!-- Instagram -->
+      <div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td colspan="3" class="text-center">
+            <p>Instagram</p>
+            <img src="pic/instagram.png" style="width: 50%" />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3" class="text-left">Random</th>
+        </tr>
+        <tr>
+          <th id="resripv">Engagement + Shares + Reach + Impressions + Profile Visit</th>
+          <th>Minimal beli</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="number"
+              id="resripvig"
+              placeholder="Masukkan jumlah"
+              style="width: 100%; min-width: 160px"
+              class="form-control"
+            />
+          </td>
+          <td>100 = Rp 3,500</td>
+          <td>
+            <button class="btn btn-primary" onclick="calculate('resripvig', 3500, 100)">
+              Hitung
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total Biaya:</td>
+          <td><span id="result-resripvig">0</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">
+            <button class="btn btn-success" onclick="buy('resripvig', 'Engagement + Shares + Reach + Impressions + Profile Visit Instagram Random', 3500, 100);">Beli</button>
+          </td>
+        </tr>
+      </tbody>
+
+      <tr>
+        <th id="rfld">Followers Low Drop 5-20%</th>
+        <th>Minimal beli</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input
+            type="number"
+            id="rfldig"
+            placeholder="Masukkan jumlah"
+            style="width: 100%; min-width: 160px"
+            class="form-control"
+          />
+        </td>
+        <td>50 = Rp 4,500</td>
+        <td>
+          <button class="btn btn-primary" onclick="calculate('rfldig', 4500, 50)">
+            Hitung
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-right">Total Biaya:</td>
+        <td><span id="result-rfldig">0</span></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="text-center">
+          <button class="btn btn-success" onclick="buy('rfldig', 'Followers Instagram Random low Drop 5-20%', 4500, 50);">Beli</button>
+        </td>
+      </tr>
+    </tbody>
+
+      <tr>
+        <th id="lig">Likes</th>
+        <th>Minimal beli</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="likeig"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>50 Likes = Rp 500</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('likeig', 500, 50)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right">Total Biaya:</td>
+    <td><span id="result-likeig">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('igcc', 'Like Instagram Random', 500, 50)">Beli</button>
+    </td>
+  </tr>
+</tbody>
+
+
+    <tr>
+      <th colspan="3" class="text-left">Indonesia</th>
+    </tr>
+    <tr>
+      <th id="icc">Comment Custom</th>
+      <th>Minimal beli</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="number"
+          id="iccig"
+          placeholder="Masukkan jumlah"
+          style="width: 100%; min-width: 160px"
+          class="form-control"
+        />
+      </td>
+      <td>5 Comments = Rp 5,500</td>
+      <td>
+        <button class="btn btn-primary" onclick="calculate('iccig', 5500, 5)">
+          Hitung
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-right">Total Biaya:</td>
+      <td><span id="result-iccig">0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <button class="btn btn-success" onclick="buy('iccig', 'Comment Custom Instagram Indonesia', 5500, 5)">Beli</button>
+      </td>
+    </tr>
+</tbody>
+
+
+  <tr>
+    <th id="ifoll">Followers</th>
+    <th>Minimal beli</th>
+    <th>Aksi</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="number"
+          id="ifollig"
+          placeholder="Masukkan jumlah"
+          style="width: 100%; min-width: 160px"
+          class="form-control"
+        />
+      </td>
+      <td>50 Followers = Rp 2,000</td>
+      <td>
+        <button class="btn btn-primary" onclick="calculate('ifollig', 2000, 50)">
+          Hitung
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-right">Total Biaya:</td>
+      <td><span id="result-ifollig">0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <button class="btn btn-success" onclick="buy('rfldig', 'Followers Instagram Indonesia', 2000, 50)">Beli</button>
+      </td>
+    </tr>
+  </tbody>
+  
+
+  <tr>
+    <th id="ill">Likes</th>
+    <th>Minimal beli</th>
+    <th>Aksi</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="number"
+          id="illig"
+          placeholder="Masukkan jumlah"
+          style="width: 100%; min-width: 160px"
+          class="form-control"
+        />
+      </td>
+      <td>50 Likes = Rp 1,000</td>
+      <td>
+        <button class="btn btn-primary" onclick="calculate('illig', 1000, 50)">
+          Hitung
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-right">Total Biaya:</td>
+      <td><span id="result-illig">0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <button class="btn btn-success" onclick="buy('illig', 'Likes Instagram Indonesia', 1000, 50)">Beli</button>
+      </td>
+    </tr>
+  </tbody>
+  
+    </table>
+  </div>
+
+  <!-- Lazada -->
+  <div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td colspan="3" class="text-center">
+          <p>Lazada</p>
+          <img src="pic/lazada.png" style="width: 50%" />
+        </td>
+      </tr>
+      <tr>
+        <th id="lazfol">Followers</th>
+        <th>Minimal beli</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input
+            type="number"
+            id="lazfolll"
+            placeholder="Masukkan jumlah"
+            style="width: 100%; min-width: 160px"
+            class="form-control"
+          />
+        </td>
+        <td>50 = Rp 4,500</td>
+        <td>
+          <button class="btn btn-primary" onclick="calculate('lazfolll', 4500, 50)">
+            Hitung
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-right">Total Biaya:</td>
+        <td><span id="result-lazfolll">0</span></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="text-center">
+          <button class="btn btn-success" onclick="buy('lazfolll', 'Followers Lazada', 4500, 50)">Beli</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- Shopee -->
+  <div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td colspan="3" class="text-center">
+            <p>Shopee</p>
+            <img src="pic/shopee.png" style="width: 50%" />
+          </td>
+        </tr>
+        <tr>
+          <th id="follsop">Followers</th>
+          <th>Minimal beli</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="number"
+              id="follsopsh"
+              placeholder="Masukkan jumlah"
+              style="width: 100%; min-width: 160px"
+              class="form-control"
+            />
+          </td>
+          <td>100 Followers = Rp 2,500</td>
+          <td>
+            <button class="btn btn-primary" onclick="calculate('follsopsh', 2500, 100)">
+              Hitung
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total Biaya:</td>
+          <td><span id="result-follsopsh">0</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">
+            <button class="btn btn-success" onclick="buy('follsopsh', 'Followers Shopee', 2500, 100)">Beli</button>
+          </td>
+        </tr>
+      </tbody>
+  
+      <thead>
+        <tr>
+          <th id="cclivesop">Custom Comment (Live)</th>
+          <th>Minimal beli</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="number"
+              id="cclivesopsh"
+              placeholder="Masukkan jumlah"
+              style="width: 100%; min-width: 160px"
+              class="form-control"
+            />
+          </td>
+          <td>5 = Rp 6,000</td>
+          <td>
+            <button class="btn btn-primary" onclick="calculate('cclivesopsh', 6000, 5)">
+              Hitung
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total Biaya:</td>
+          <td><span id="result-cclivesopsh">0</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">
+            <button class="btn btn-success" onclick="buy('cclivesopsh', 'Custom Comment (Live) Shopee', 6000, 5)">Beli</button>
+          </td>
+        </tr>
+      </tbody>
+  
+      <thead>
+        <tr>
+          <th id="focul">Fake Order Check Out (Live)</th>
+          <th>Minimal beli</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="number"
+              id="foculsh"
+              placeholder="Masukkan jumlah"
+              style="width: 100%; min-width: 160px"
+              class="form-control"
+            />
+          </td>
+          <td>10 = Rp 500</td>
+          <td>
+            <button class="btn btn-primary" onclick="calculate('foculsh', 500, 10)">
+              Hitung
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total Biaya:</td>
+          <td><span id="result-foculsh">0</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">
+            <button class="btn btn-success" onclick="buy('foculsh', 'Fake Order Check Out (Live) Shopee', 500, 10)">Beli</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+    <!-- Telegram -->
+    <div class="container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td colspan="3" class="text-center">
+              <p>Telegram</p>
+              <img src="pic/telegram.png" style="width: 50%" />
+            </td>
+          </tr>
+          <tr>
+            <th id="vpctel">Views Post Channel</th>
+            <th>Minimal beli</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="number"
+                id="vpctelch"
+                placeholder="Masukkan jumlah"
+                style="width: 100%; min-width: 160px"
+                class="form-control"
+              />
+            </td>
+            <td>1000 Views = Rp 1,000</td>
+            <td>
+              <button class="btn btn-primary" onclick="calculate('vpctelch', 1000, 1000)">
+                Hitung
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-right">Total Biaya:</td>
+            <td><span id="result-vpctelch">0</span></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <button class="btn btn-success" onclick="buy('vpctelch', 'Views Post Channel Telegram', 1000, 1000)">Beli</button>
+            </td>
+          </tr>
+        </tbody>
+    
+        <thead>
+          <tr>
+            <th id="rpcmix">Reactions Post Channel (Mixed)</th>
+            <th>Minimal beli</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input
+                type="number"
+                id="rpcmixch"
+                placeholder="Masukkan jumlah"
+                style="width: 100%; min-width: 160px"
+                class="form-control"
+              />
+            </td>
+            <td>100 Reactions = Rp 400</td>
+            <td>
+              <button class="btn btn-primary" onclick="calculate('rpcmixch', 400, 100)">
+                Hitung
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-right">Total Biaya:</td>
+            <td><span id="result-rpcmixch">0</span></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <button class="btn btn-success" onclick="buy('rpcmixch', 'Reactions Post Channel (Mixed) Telegram', 400, 100)">Beli</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Threads -->
+    <div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td colspan="3" class="text-center">
+            <p>Threads</p>
+            <img src="pic/threads.png" style="width: 50%" />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3" class="text-left">Random</th>
+        </tr>
+        <tr>
+          <th id="rthfol">Followers</th>
+          <th>Minimal beli</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="number"
+              id="rthfolth"
+              placeholder="Masukkan jumlah"
+              style="width: 100%; min-width: 160px"
+              class="form-control"
+            />
+          </td>
+          <td>50 Followers = Rp 3,500</td>
+          <td>
+            <button class="btn btn-primary" onclick="calculate('rthfolth', 3500, 50)">
+              Hitung
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total Biaya:</td>
+          <td><span id="result-rthfolth">0</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">
+            <button class="btn btn-success" onclick="buy('rthfolth', 'Followers Threads', 3500, 50)">Beli</button>
+          </td>
+        </tr>
+      </tbody>
+      
+
+      <tr>
+        <th id="rlike">Likes</th>
+        <th>Minimal beli</th>
+        <th>Aksi</th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="number"
+              id="rliketh"
+              placeholder="Masukkan jumlah"
+              style="width: 100%; min-width: 160px"
+              class="form-control"
+            />
+          </td>
+          <td>10 Likes = Rp 1,000</td>
+          <td>
+            <button class="btn btn-primary" onclick="calculate('rliketh', 1000, 10)">
+              Hitung
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total Biaya:</td>
+          <td><span id="result-rliketh">0</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="text-center">
+            <button class="btn btn-success" onclick="buy('rliketh', 'Likes Threads (Random)', 1000, 10)">Beli</button>
+          </td>
+        </tr>
+      </tbody>
+      
+
+    <tr>
+      <th colspan="3" class="text-left">Indonesia</th>
+    </tr>
+    <tr>
+      <th id="ifollsth">Followers</th>
+      <th>Minimal beli</th>
+      <th>Aksi</th>
+    </tr>
+    <tbody>
+      <tr>
+        <td>
+          <input
+            type="number"
+            id="ifollsthth"
+            placeholder="Masukkan jumlah"
+            style="width: 100%; min-width: 160px"
+            class="form-control"
+          />
+        </td>
+        <td>100 Followers = Rp 4,000</td>
+        <td>
+          <button class="btn btn-primary" onclick="calculate('ifollsthth', 4000, 100)">
+            Hitung
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-right">Total Biaya:</td>
+        <td><span id="result-ifollsthth">0</span></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="text-center">
+          <button class="btn btn-success" onclick="buy('ifollsthth', 'Followes Threads Indonesia', 22500, 15)">Beli</button>
+        </td>
+      </tr>
+  </tbody>
+  
+  </table>
+</div>
+
+<!-- TikTok -->
+<div class="container">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td colspan="3" class="text-center">
+        <p>TikTok</p>
+        <img src="pic/tiktok.png" style="width: 50%" />
+      </td>
+    </tr>
+    <tr>
+      <th colspan="3" class="text-left">Random</th>
+    </tr>
+    <tr>
+      <th id="rvattk">Views Asia</th>
+      <th>Minimal beli</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="number"
+          id="rvattktk"
+          placeholder="Masukkan jumlah"
+          style="width: 100%; min-width: 160px"
+          class="form-control"
+        />
+      </td>
+      <td>500 Views = Rp 500</td>
+      <td>
+        <button class="btn btn-primary" onclick="calculate('rvattktk', 500, 500)">
+          Hitung
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-right">Total Biaya:</td>
+      <td><span id="result-rvattktk">0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <button class="btn btn-success" onclick="buy('rvattktk', 'Views TikTok Asia', 500, 500)">Beli</button>
+      </td>
+    </tr>
+</tbody>
+
+
+  <tr>
+    <th id="rvttk">Views</th>
+    <th>Minimal beli</th>
+    <th>Aksi</th>
+  </tr>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="number"
+          id="rvttktk"
+          placeholder="Masukkan jumlah"
+          style="width: 100%; min-width: 160px"
+          class="form-control"
+        />
+      </td>
+      <td>100 Views = Rp 500</td>
+      <td>
+        <button class="btn btn-primary" onclick="calculate('rvttktk', 500, 100)">
+          Hitung
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-right">Total Biaya:</td>
+      <td><span id="result-rvttktk">0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <button class="btn btn-success" onclick="buy('rvttktk', 'Views Random TikTok', 500, 100)">Beli</button>
+      </td>
+    </tr>
+  </tbody>
+
+<tr>
+  <th id="rfttk">Followers</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="rfttktk"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>10 Followers = Rp 500</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('rfttktk', 500, 10)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right">Total Biaya:</td>
+    <td><span id="result-rfttktk">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('rfttktk', 'Followers Random TikTok', 22500, 15)">Beli</button>
+    </td>
+  </tr>
+  </tbody>
+  
+
+<tr>
+  <th colspan="3" class="text-left">Indonesia</th>
+</tr>
+<tr>
+  <th id="idcuscom">Custom Comment</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="idcuscomtk"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>10 Comment = Rp 8,500</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('idcuscomtk', 8500, 10)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right">Total Biaya:</td>
+    <td><span id="result-idcuscomtk">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('idcuscomtk', 'TikTok Custom Comment', 8500, 10)">Beli</button>
+    </td>
+  </tr>
+  </tbody>
+  
+
+<tr>
+  <th id="idfolls">Followers</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="idfollstktk"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>10 Followers = Rp 2,000</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('idfollstktk', 2000, 10)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right">Total Biaya:</td>
+    <td><span id="result-idfollstktk">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('idfollstktk', 'Followers TikTok Indonesia', 2000, 10)">Beli</button>
+    </td>
+  </tr>
+  </tbody>
+  
+
+<tr>
+  <th id="idlik">Likes</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="idliktk"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>50 Likes = Rp 1,500</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('idliktk', 1500, 50)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right">Total Biaya:</td>
+    <td><span id="result-idliktk">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('idliktk', 'Likes TikTok Indonesia', 1500, 50)">Beli</button>
+    </td>
+  </tr>
+  </tbody>
+  
+
+<tr>
+  <th id="idviews">Views</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="idviewstktk"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>100 views = Rp 700</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('idviewstktk', 700, 100)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right">Total Biaya:</td>
+    <td><span id="result-idviewstktk">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('idviewstktk', 'Views TikTok Indonesia', 700, 100)">Beli</button>
+    </td>
+  </tr>
+  </tbody>
+  
+</table>
+</div>
+
+<!-- Twitter -->
+<div class="container">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td colspan="3" class="text-center">
+        <p>Twitter</p>
+        <img src="pic/twt.png" style="width: 50%" />
+      </td>
+    </tr>
+    <tr>
+      <th colspan="3" class="text-left">Random</th>
+    </tr>
+    <tr>
+      <th id="twtrfolls">Followers</th>
+      <th>Minimal beli</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="number"
+          id="twtrfollsx"
+          placeholder="Masukkan jumlah"
+          style="width: 100%; min-width: 160px"
+          class="form-control"
+        />
+      </td>
+      <td>50 Followers = Rp 1,700</td>
+      <td>
+        <button class="btn btn-primary" onclick="calculate('twtrfollsx', 1700, 50)">
+          Hitung
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-right
+      ">Total Biaya:</td>
+      <td><span id="result-twtrfollsx">0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <button class="btn btn-success" onclick="buy('twtrfollsx', 'Followers Random Twitter', 1700, 50)">Beli</button>
+      </td>
+    </tr>
+  </tbody>
+
+  <tr>
+    <th id="twtimpress">Impressions</th>
+    <th>Minimal beli</th>
+    <th>Aksi</th>
+  </tr>
+<tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="twtimpressx"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>100 = Rp 700</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('twtimpressx', 700, 100)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right
+    ">Total Biaya:</td>
+    <td><span id="result-twtimpressx">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('twtimpressx', 'Impressions Twitter Random', 22500, 15)">Beli</button>
+    </td>
+  </tr>
+</tbody>
+
+<tr>
+  <th id="rlikestwt">Likes</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+<tr>
+  <td>
+    <input
+      type="number"
+      id="rlikestwtx"
+      placeholder="Masukkan jumlah"
+      style="width: 100%; min-width: 160px"
+      class="form-control"
+    />
+  </td>
+  <td>100 Likes = Rp 2,000</td>
+  <td>
+    <button class="btn btn-primary" onclick="calculate('rlikestwtx', 2000, 100)">
+      Hitung
+    </button>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" class="text-right
+  ">Total Biaya:</td>
+  <td><span id="result-rlikestwtx">0</span></td>
+</tr>
+<tr>
+  <td colspan="3" class="text-center">
+    <button class="btn btn-success" onclick="buy('rlikestwtx', 'Likes Twitter Random', 2000, 100)">Beli</button>
+  </td>
+</tr>
+</tbody>
+
+<tr>
+  <th id="rrettwt">Retweets</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+<tr>
+  <td>
+    <input
+      type="number"
+      id="rrettwtx"
+      placeholder="Masukkan jumlah"
+      style="width: 100%; min-width: 160px"
+      class="form-control"
+    />
+  </td>
+  <td>50 Retweets = Rp 2,500</td>
+  <td>
+    <button class="btn btn-primary" onclick="calculate('rrettwtx', 2500, 50)">
+      Hitung
+    </button>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" class="text-right
+  ">Total Biaya:</td>
+  <td><span id="result-rrettwtx">0</span></td>
+</tr>
+<tr>
+  <td colspan="3" class="text-center">
+    <button class="btn btn-success" onclick="buy('rrettwtx', 'Reetwets Twitter Random', 2500, 50)">Beli</button>
+  </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- WhatsApp -->
+<div class="container">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td colspan="3" class="text-center">
+        <p>WhatsApp</p>
+        <img src="pic/wa.png" style="width: 50%" />
+      </td>
+    </tr>
+    <tr>
+      <th id="rrwach">Reactions</th>
+      <th>Minimal beli</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input
+          type="number"
+          id="rrwachwa"
+          placeholder="Masukkan jumlah"
+          style="width: 100%; min-width: 160px"
+          class="form-control"
+        />
+      </td>
+      <td>10 = Rp 1,500</td>
+      <td>
+        <button class="btn btn-primary" onclick="calculate('rrwachwa', 1500, 10)">
+          Hitung
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-right
+      ">Total Biaya:</td>
+      <td><span id="result-rrwachwa">0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="text-center">
+        <button class="btn btn-success" onclick="buy('rrwachwa', 'Reactions WhatsApp Random', 1500, 10)">Beli</button>
+      </td>
+    </tr>
+  </tbody>
+
+  <tr>
+    <th id="glmmwach">Member (Global)</th>
+    <th>Minimal beli</th>
+    <th>Aksi</th>
+  </tr>
+<tbody>
+  <tr>
+    <td>
+      <input
+        type="number"
+        id="glmmwachwa"
+        placeholder="Masukkan jumlah"
+        style="width: 100%; min-width: 160px"
+        class="form-control"
+      />
+    </td>
+    <td>10 = Rp 2,500</td>
+    <td>
+      <button class="btn btn-primary" onclick="calculate('glmmwachwa', 2500, 10)">
+        Hitung
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="text-right
+    ">Total Biaya:</td>
+    <td><span id="result-glmmwachwa">0</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">
+      <button class="btn btn-success" onclick="buy('glmmwachwa', 'Member (Global) WhatsApp', 2500, 10)">Beli</button>
+    </td>
+  </tr>
+</tbody>
+
+<tr>
+  <th>Member (Indonesia)</th>
+  <th>Minimal beli</th>
+  <th>Aksi</th>
+</tr>
+<tbody>
+<tr>
+  <td>
+    <input
+      type="number"
+      id="idmmwachwa"
+      placeholder="Masukkan jumlah"
+      style="width: 100%; min-width: 160px"
+      class="form-control"
+    />
+  </td>
+  <td>10 = Rp 15,000</td>
+  <td>
+    <button class="btn btn-primary" onclick="calculate('idmmwachwa', 15000, 10)">
+      Hitung
+    </button>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" class="text-right
+  ">Total Biaya:</td>
+  <td><span id="result-idmmwachwa">0</span></td>
+</tr>
+<tr>
+  <td colspan="3" class="text-center">
+    <button class="btn btn-success" onclick="buy('idmmwachwa', 'Member WhatsApp Indonesia', 15000, 10)">Beli</button>
+  </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- YouTube -->
+<div class="container">
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+              <td colspan="3" class="text-center">
+                  <p>YouTube</p>
+                  <img src="pic/yt.png" style="width: 50%" />
+              </td>
+          </tr>
+          <tr>
+              <th id="glsubsyt">Subscribers (Global)</th>
+              <th>Minimal beli</th>
+              <th>Aksi</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>
+                  <input type="number" id="glsubsytb" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>100 subs = Rp 7,000</td>
+              <td>
+                  <button class="btn btn-primary" onclick="calculate('glsubsytb', 7000, 100)">
+                      Hitung
+                  </button>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-glsubsytb">0</span></td>
+          </tr>
+          <tr>
+              <td colspan="3" class="text-center">
+                  <button class="btn btn-success" onclick="buy('glsubsytb', 'Subscribers (Global) YouTube', 7000, 100)">
+                      Beli
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+      
+      <thead>
+          <tr>
+              <th id="glviewsyt">Views + 2% Likes (Global)</th>
+              <th>Minimal beli</th>
+              <th>Aksi</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>
+                  <input type="number" id="glviewsytb" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>100 = Rp 4,000</td>
+              <td>
+                  <button class="btn btn-primary" onclick="calculate('glviewsytb', 4000, 100)">
+                      Hitung
+                  </button>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-glviewsytb">0</span></td>
+          </tr>
+          <tr>
+              <td colspan="3" class="text-center">
+                  <button class="btn btn-success" onclick="buy('glviewsytb', 'Views + 2% Likes (Global) YouTube', 4000, 100)">
+                      Beli
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+
+      <thead>
+          <tr>
+              <th id="wtchmyt">Watchtimes</th>
+              <th>Minimal beli</th>
+              <th>Aksi</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>
+                  <input type="number" id="wtchmytb" placeholder="Masukkan jumlah" class="form-control" />
+              </td>
+              <td>50 = Rp 128,000</td>
+              <td>
+                  <button class="btn btn-primary" onclick="calculate('wtchmytb', 128000, 50)">
+                      Hitung
+                  </button>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2" class="text-right">Total Biaya:</td>
+              <td><span id="result-wtchmytb">0</span></td>
+          </tr>
+          <tr>
+              <td colspan="3" class="text-center">
+                  <button class="btn btn-success" onclick="buy('wtchmytb', 'Watchtimes Youtube', 128000, 50)">
+                      Beli
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+<a href="#dropdownJasa" class="back-home"><i class='bx bxs-chevrons-up'></i></a>
+
+
+    <!-- Custom Alert -->
+    <div id="customAlert">
+      <p id="alertMessage"></p>
+      <button onclick="closeAlert()">Tutup</button>
+  </div>
+  
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Konfirmasi Pembelian</h5>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <p id="productDescription"></p>
+            <button class="btn btn-success" onclick="continuePurchase()">Lanjutkan</button>
+            <button class="btn btn-danger" onclick="closeModal()">Batalkan</button>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+      <p>Copyright &copy; 2024 Kyulyzy. All Rights Reserved. |</p>
+        <img src="pic/logo.png" width="25px" />
+      </div>
+    </footer>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+      <script>
+        AOS.init();
+
+ // Smooth scrolling and close navbar on link click
+ function closeNavbar() {
+        $(".navbar-collapse").collapse("hide");
+      }
+
+      // Change navbar style on scroll
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+          $(".header").addClass("scrolled");
+        } else {
+          $(".header").removeClass("scrolled");
+        }
+      });
+
+      // Close navbar when clicking outside of it
+      $(document).click(function (event) {
+        var clickover = $(event.target);
+        var _opened = $(".navbar-collapse").hasClass("show");
+        if (_opened === true && !clickover.hasClass("navbar-toggler")) {
+          $(".navbar-toggler").click();
+        }
+      });
+
+        function showAlert(message) {
+    const alertBox = document.getElementById("customAlert");
+    document.getElementById("alertMessage").innerText = message;
+    alertBox.style.display = "block";
+
+    setTimeout(() => {
+        alertBox.style.opacity = "1";
+    }, 100);
+
+    setTimeout(closeAlert, 3000); // Alert otomatis tertutup setelah 3 detik
+}
+
+function closeAlert() {
+    const alertBox = document.getElementById("customAlert");
+    alertBox.style.opacity = "0";
+
+    setTimeout(() => {
+        alertBox.style.display = "none";
+    }, 300);
+}
+
+function calculate(inputId, pricePerUnit, minOrder) {
+  console.log(`Input ID: ${inputId}, Price: ${pricePerUnit}, Min Order: ${minOrder}`);
+    const jumlahElement = document.getElementById(inputId);
+    const jumlah = jumlahElement.value;
+    // Konversi input ke Number
+    const jumlahNumeric = parseInt(jumlah, 10);
+
+    // Cek apakah jumlahNumeric NaN atau kurang dari minOrder
+    if (isNaN(jumlahNumeric) || jumlahNumeric < minOrder || jumlahNumeric <= 0) {
+        showAlert(`Jumlah harus ${minOrder} atau lebih!`);
+        jumlahElement.value = ""; // Reset nilai input
+        document.getElementById(`result-${inputId}`).innerText = "0"; // Reset hasil
+        return;
+    }
+
+    // Hitung total biaya
+    const totalBiaya = (jumlahNumeric / minOrder) * pricePerUnit;
+    document.getElementById(`result-${inputId}`).innerText = totalBiaya.toLocaleString();
+}
+
+let productData = {
+        inputId: '',
+        serviceName: '',
+        pricePerUnit: 0,
+        minOrder: 0,
+        totalBiaya: 0
+    };
+
+    function buy(inputId, serviceName, pricePerUnit, minOrder) {
+        console.log(`Buying ${serviceName} with ID: ${inputId}`);
+        const jumlahElement = document.getElementById(inputId);
+        const jumlah = jumlahElement.value;
+        const totalBiayaText = document.getElementById(`result-${inputId}`).innerText;
+        const totalBiaya = Number(totalBiayaText.replace(/[^0-9.-]+/g, "")); // Ambil angka dari format harga
+
+        // Cek jika jumlah input valid
+        if (!jumlah || isNaN(totalBiaya) || Number(jumlah) < minOrder) {
+            showAlert(`Jumlah harus ${minOrder} atau lebih sebelum membeli!`);
+            return;
+        }
+
+        // Simpan data produk untuk referensi di modal
+        productData = {
+            inputId: inputId,
+            serviceName: serviceName,
+            pricePerUnit: pricePerUnit,
+            minOrder: minOrder,
+            totalBiaya: totalBiaya
+        };
+
+        // Tampilkan modal
+        const description = `Anda akan membeli ${jumlah} ${serviceName} dengan total biaya Rp ${totalBiaya.toLocaleString()}. Apakah Anda ingin melanjutkan?`;
+        document.getElementById('productDescription').innerText = description;
+        document.getElementById('myModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = "none";
+    }
+
+    function continuePurchase() {
+        const { inputId, serviceName, totalBiaya } = productData;
+        const phoneNumber = "6288970905281";
+        const message = `Halo kak, aku mau beli ${document.getElementById(inputId).value} ${serviceName} dengan total Rp. ${totalBiaya.toLocaleString()}`;
+        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`);
+        closeModal(); // Close modal after continuing
+    }
+
+
+      function closeModal() {
+          document.getElementById('myModal').style.display = 'none';
+      }
+
+      // Close modal when the user clicks anywhere outside of the modal
+      window.onclick = function(event) {
+          if (event.target == document.getElementById('myModal')) {
+              closeModal();
+          }
+      }
+      
+      document.addEventListener("DOMContentLoaded", function () {
+      const dropdownToggle = document.querySelector(".dropdown-toggle");
+      const dropdownMenu = document.querySelector(".dropdown-menu");
+
+      dropdownToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        dropdownMenu.classList.toggle("show");
+      });
+
+      document.querySelectorAll(".dropdown-submenu > .dropdown-toggle").forEach(submenuToggle => {
+        submenuToggle.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const submenu = this.nextElementSibling;
+          const isActive = submenu.classList.contains("show");
+
+          document.querySelectorAll(".submenu").forEach(el => el.classList.remove("show"));
+          document.querySelectorAll(".dropdown-submenu").forEach(el => el.classList.remove("open"));
+
+          if (!isActive) {
+            submenu.classList.add("show");
+            this.parentElement.classList.add("open");
+          }
+        });
+      });
+
+      document.addEventListener("click", function () {
+        dropdownMenu.classList.remove("show");
+        document.querySelectorAll(".submenu").forEach(el => el.classList.remove("show"));
+        document.querySelectorAll(".dropdown-submenu").forEach(el => el.classList.remove("open"));
+      });
+    });
+
+      </script>
+    </body>
+  </html>

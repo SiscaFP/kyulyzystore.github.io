@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Under Maintenance</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+      }
+
+      .title {
+        text-shadow: 0 0 20px rgba(233, 69, 96, 0.7);
+      }
+
+      .description {
+        color: #ffffff;
+      }
+
+      .time {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+
+      .time:hover {
+        transform: scale(1.1);
+      }
+
+      .number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #e94560;
+      }
+
+      .button {
+        text-align: center;
+        padding: 30px;
+        margin: 30px;
+      }
+
+      .button a {
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 10px 20px;
+        color: #ffffff;
+        background: linear-gradient(135deg, #e94560, #0f3460);
+        border: none;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .button a:hover {
+        background: linear-gradient(135deg, #0f3460, #e94560);
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-light">
+    <div
+      class="container text-center vh-100 d-flex flex-column justify-content-center"
+    >
+      <h1 class="display-4 title">Under Maintenance</h1>
+      <p class="lead description">
+        Tunggu dulu ya! Lagi dibenerin belum beres kebelet launching (✿◡‿◡)
+      </p>
+      <div id="countdown" class="row justify-content-center mt-4">
+        <div class="col-3 time p-3">
+          <div id="days" class="number"></div>
+          <span>Days</span>
+        </div>
+        <div class="col-3 time p-3">
+          <div id="hours" class="number"></div>
+          <span>Hours</span>
+        </div>
+        <div class="col-3 time p-3">
+          <div id="minutes" class="number"></div>
+          <span>Minutes</span>
+        </div>
+        <div class="col-3 time p-3">
+          <div id="seconds" class="number"></div>
+          <span>Seconds</span>
+        </div>
+      </div>
+      <div class="button">
+        <a href="index.html" class="btn btn-primary">Home</a>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Set the date we're counting down to (example: 1 hour from now)
+      const countDownDate = new Date(Date.now() + 2305 * 783 * 983).getTime(); // 1 hour from now
+
+      // Update the countdown every 1 second
+      const x = setInterval(function () {
+        // Get today's date and time
+        const now = new Date().getTime();
+
+        // Find the distance between now and the countdown date
+        const distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the elements with id
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        // If the countdown is over, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.querySelector(".container").innerHTML =
+            "<h1 class='display-4'>We'll Be Back Soon!</h1>";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

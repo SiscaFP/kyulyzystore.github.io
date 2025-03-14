@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <title>Kyulyzy Store - Top Up Game Murah</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+        text-align: center;
+        background: #f7ee93;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #4a4a4a;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        color: black;
+        font-weight: 600;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #4a4a4a;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #4a4a4a;
+        margin-left: 1rem;
+        transition: color 0.3s;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: #000;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%284, 4, 4, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+
+      /* Smoth Transition for Navbar Background */
+      .navbar.scrolled {
+        background-color: #ffffff !important; /* Change the background when scrolled */
+      }
+      .search-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 5%;
+        }
+
+        .search-box {
+            width: 200px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid white;
+            background: white;
+            font-size: 14px;
+        }
+
+      h1 {
+        color: #ffffff;
+        padding: 80px 0 20px;
+        background: #000000;
+        margin: 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .topup h3 {
+        background-color: black;
+        color: #f7ee93;
+        padding: 10px;
+      }
+
+      .container {
+        margin-top: 10px; 
+      }
+
+      .card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        min-height: 200px; /* Agar seragam */
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        background-color: #f9f9f9;
+      }
+
+      .card img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .card h2 {
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 576px) {
+        .col-card {
+          flex: 0 0 50%; /* 2 kolom di mobile */
+          max-width: 50%;
+        }
+      }
+
+      .footer {
+        background: #333;
+        color: white;
+        padding: 15px 0;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; /* Jarak antara teks dan ikon */
+      }
+
+      .footer p {
+        margin: 0;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <div class="logo">Kyulyzy Store</div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-controls="navbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav ml-auto">
+              <a class="nav-item nav-link" href="index.html">Home</a>
+              <a class="nav-item nav-link" href="pinpri.html">Pinpri</a>
+              <a class="nav-item nav-link" href="sosial-media.html"
+                >Sosial Media</a
+              >
+              <a class="nav-item nav-link" href="testimoni.html">Testimoni</a>
+              <a class="nav-item nav-link" href="top-up.html">Top Up</a>
+              <a class="nav-item nav-link" href="undangan.html">Undangan</a>
+              <a class="nav-item nav-link" href="unlock.html">Unlock</a>
+              <a class="nav-item nav-link" href="website.html">Website</a>
+              <a class="nav-item nav-link" href="https://wa.me/6288970905281"
+                >Admin</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <h1>TOP UP GAME DAN VOUCHER MURAH</h1>
+    </section>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Cari game/voucher..." onkeyup="searchGame()">
+        </div>
+    </div>
+
+        <section class="topup">
+            <div class="desc-game">
+              <h3>Top Up Game</h3>
+            </div>
+
+      <div class="container">
+        <div class="row" id="gameList">
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="Mobile Legends">
+            <div class="card">
+              <img src="element/ml.jpg" alt="" />
+              <h2>Mobile Legends</h2>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="Free Fire">
+            <div class="card">
+              <img src="element/ff.jpg" alt="" />
+              <h2>Free Fire</h2>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="PUBG Mobile">
+            <div class="card">
+              <img src="element/pubg.jpeg" alt="" />
+              <h2>PUBG Mobile</h2>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="Call of Duty">
+            <div class="card">
+              <img src="element/cod.jpg" alt="" />
+              <h2>Call of Duty</h2>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="Clash Royale">
+            <div class="card">
+              <img src="element/cr.jpg" alt="" />
+              <h2>Clash Royale</h2>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="Clash of Clans">
+            <div class="card">
+              <img src="element/coc.jpg" alt="" />
+              <h2>Clash of Clans</h2>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="Valorant">
+            <div class="card">
+              <img src="element/valo.jpg" alt="" />
+              <h2>Valorant</h2>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-4 game-card" data-name="Speed Drifters">
+            <div class="card">
+              <img src="element/spd.png" alt="" />
+              <h2>Speed Drifters</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topup">
+        <div class="desc-game">
+            <h3>Voucher</h3>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4 game-card" data-name="Garena Shell">
+                    <div class="card">
+                        <img src="element/shell.jpg" alt="" />
+                        <h2>Garena Shell</h2>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 game-card" data-name="Lyto">
+                    <div class="card">
+                        <img src="element/lyto.jpg" alt="" />
+                        <h2>Lyto</h2>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 game-card" data-name="Unipin">
+                    <div class="card">
+                        <img src="element/unipin.png" alt="" />
+                        <h2>Unipin</h2>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 game-card" data-name="Google Play">
+                    <div class="card">
+                        <img src="element/gplay.jpg" alt="" />
+                        <h2>Google Play</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer class="footer">
+      <p>Copyright &copy; 2024 Kyulyzy. All Rights Reserved. |</p>
+        <img src="pic/logo.png" width="25px" />
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      
+      $(document).ready(function () {
+        $(".navbar-toggler").click(function () {
+          $("#navbar").toggleClass("collapse");
+        });
+
+        $(document).click(function (event) {
+          var clickover = $(event.target);
+          var _opened = $("#navbar").hasClass("show");
+          if (_opened === true && !clickover.hasClass("navbar-toggler")) {
+            $("#navbar").collapse("hide");
+          }
+        });
+      });
+
+      function searchGame() {
+            let input = document.getElementById("search-input").value.toLowerCase();
+            let cards = document.getElementsByClassName("game-card");
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName("h2")[0].innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+      menuIcon.onclick = () => {
+        navbar.style.display =
+          navbar.style.display === "flex" ? "none" : "flex";
+      };
+    </script>
+  </body>
+</html>
